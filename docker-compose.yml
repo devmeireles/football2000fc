@@ -47,6 +47,8 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: football2000
+    ports:
+      - "5432:5432"
     volumes:
       - "postgres:/var/lib/postgresql/data"
     networks:
