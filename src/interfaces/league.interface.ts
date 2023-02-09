@@ -10,7 +10,7 @@ export interface ILeague extends IDefault {
   type: TLeagueType;
   slug: string;
   country: ICountry | string;
-  media: IMedia | string;
+  media?: IMedia | string;
   name: string;
   seasons?: ISeason[] | Record<string, any>;
   external_id: string;
