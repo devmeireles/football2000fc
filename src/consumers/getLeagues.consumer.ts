@@ -1,10 +1,14 @@
 import { Kafka, logLevel } from 'kafkajs'
 import * as dotenv from 'dotenv'
+import { MikroORM } from "@mikro-orm/core";
+import { PostgreSqlDriver } from "@mikro-orm/postgresql";
+import options from "../mikro-orm.config";
 import { queueDataHandler } from '../helpers/queueDataHandler.helper';
 
 dotenv.config();
 
 (async () => {
+    const orm = await MikroORM.init<PostgreSqlDriver>(options);
     const KAFKA_BROKER_ADDRESS = process.env.KAFKA_BROKER
     const EXAMPLE_TOPIC = 'get-leagues-topic'
     const EXAMPLE_CONSUMER = 'get-leagues-consumer'
@@ -16,7 +20,7 @@ dotenv.config();
     await consumer.subscribe({ topic: EXAMPLE_TOPIC })
     await consumer.run({
         eachMessage: async ({ message }) => {
-            await queueDataHandler(message);
+            await queueDataHandler(message, orm);
         },
     })
 })();
