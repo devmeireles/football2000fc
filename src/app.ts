@@ -1,26 +1,35 @@
 import "module-alias/register";
-import * as cors from "cors";
-import * as express from "express";
-import * as dotenv from 'dotenv';
+import cors from "cors";
+import express, { NextFunction, Request } from "express";
+import dotenv from 'dotenv';
+import { MikroORM, RequestContext } from '@mikro-orm/core';
+import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { routes } from "./routes/index";
+import options from "./mikro-orm.config";
 
 export class App {
     public app: express.Application;
+    public orm: MikroORM<PostgreSqlDriver>;
 
     constructor() {
         dotenv.config();
         this.app = express();
+        this.setupDatabase();
         this.setConfig();
         this.setupRoutes();
-        this.setupDatabase();
     }
 
     private setConfig(): void {
         this.app.use(express.json());
         this.app.use(cors());
+
+        this.app.use((req, __, next: NextFunction) => {
+            RequestContext.create(this.orm.em, next);
+        });
     }
 
-    private async setupDatabase() {
+    private async setupDatabase(): Promise<void> {
+        this.orm = await MikroORM.init<PostgreSqlDriver>(options)
     }
 
     private setupRoutes(): void {

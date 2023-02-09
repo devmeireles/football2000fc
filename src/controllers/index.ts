@@ -1,0 +1,1 @@
+export * as leagueController from './league.controller';
