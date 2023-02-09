@@ -1,9 +1,7 @@
-import { getLeagueExternalIdFromImg, imageResize } from '../../helpers/dataHandler';
-import { slugfy } from '../../helpers/slugfy';
-import { ELeagueRegion } from '../../types/ELeagueRegion';
-import { ILeague } from '../../interfaces/league.interface';
+import { getLeagueExternalIdFromImg, imageResize, slugfy } from '../../helpers';
+import { ELeagueRegion, TCrawlerEventUrl } from '../../types';
+import { ILeague } from '../../interfaces';
 import { Transfermarkt } from './Transfermarkt';
-import { TCrawlerEventUrl } from '../../types/TCrawlerEventUrl';
 
 /**
  * The Transfermarkt class to handle with Leagues

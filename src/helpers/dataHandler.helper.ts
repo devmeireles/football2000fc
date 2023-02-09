@@ -1,4 +1,4 @@
-import { slugfy } from './slugfy';
+import { slugfy } from './slugfy.helper';
 
 /**
  * Gets a value to score and transforms in a number

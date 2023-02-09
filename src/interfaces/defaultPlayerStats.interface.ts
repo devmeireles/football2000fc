@@ -15,13 +15,13 @@ export type GoalkeeperStats = {
     name: string;
   };
   
-  export type ISeason = {
+  export type IPlayerSeason = {
     year: number;
     name: string;
   };
   
   export type PlayerStats = {
-    season: ISeason;
+    season: IPlayerSeason;
     competition: ICompetition;
     club: IClub;
     squad: number;

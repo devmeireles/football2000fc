@@ -1,4 +1,4 @@
-import { END_POINTS } from '../../config/consts';
+import { END_POINTS } from '../../config/consts.config';
 import { ELeagueRegion } from '../../types/ELeagueRegion';
 import { TCrawlerEventUrl } from '../../types/TCrawlerEventUrl';
 import { TLeagueCrawlerEvent } from '../../types/TLeagueCrawlerEvent';

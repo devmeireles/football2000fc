@@ -12,11 +12,15 @@ export class App {
         this.app = express();
         this.setConfig();
         this.setupRoutes();
+        this.setupDatabase();
     }
 
     private setConfig(): void {
         this.app.use(express.json());
         this.app.use(cors());
+    }
+
+    private async setupDatabase() {
     }
 
     private setupRoutes(): void {

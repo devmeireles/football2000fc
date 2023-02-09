@@ -1,6 +1,5 @@
 import { CheerioAPI } from 'cheerio';
-import { IDefaultPlayer } from '../../interfaces/defaultPlayer.internface';
-import { PlayerStats } from '../../interfaces/defaultPlayerStats.interface';
+import { IDefault, IDefaultPlayer, ISeason, PlayerStats } from '../../interfaces/';
 import {
   formatDataHeaderKey,
   formatDataHeaderValue,
@@ -8,9 +7,7 @@ import {
   formatPPG,
   formatScores,
   formatSeasonYear,
-} from '../../helpers/dataHandler';
-// import { PlayerStats } from 'types/PlayerStats';
-// import { Player } from '../../types/Player';
+} from '../../helpers';
 import { Crawler } from './Crawler';
 
 // export type GoalsStats = {

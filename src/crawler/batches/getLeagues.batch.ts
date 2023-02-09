@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 
 dotenv.config();
 
-const EXAMPLE_TOPIC = 'example-topic'
+const EXAMPLE_TOPIC = 'get-leagues-topic'
 const KAFKA_BROKER_ADDRESS = process.env.KAFKA_BROKER!
 
 console.log(KAFKA_BROKER_ADDRESS);
@@ -22,12 +22,26 @@ type TLeagueCrawlerEvent = {
     try {
         await producer.connect()
 
-        const event: TLeagueCrawlerEvent = {
-            region: 3,
-            page: 1,
-            breakPoint: 1,
-        };
-        const leagues = await getLeaguesFromContinent(event);
+        // const event: TLeagueCrawlerEvent = {
+        //     region: 3,
+        //     page: 1,
+        //     breakPoint: 1,
+        // };
+        // const leagues = await getLeaguesFromContinent(event);
+
+        const leagues = [
+            {
+                "name": "Premier Liga",
+                "slug": "premier-liga",
+                "media": "https://tmssl.akamaized.net/images/logo/normal/ukr1.png",
+                "country": "Ukraine",
+                "created_at": 1675721245613,
+                "updated_at": 1675721245613,
+                "active": false,
+                "type": "UNSET",
+                "external_id": "ukr1"
+            }
+        ]
 
         leagues.forEach(async (item, index) => {
             await producer.send({
