@@ -1,4 +1,4 @@
-import { IDefault } from './default.interface';
+import { IDefault } from "./default.interface";
 
 export interface IPlayer extends IDefault {
     name: string;

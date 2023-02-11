@@ -38,6 +38,8 @@ Football2000FC was born from a long passion for football in sync to learn about 
 
 [UUID](https://www.npmjs.com/package/uuid): An Universally Unique Identifier (UUID) is a label used to uniquely identify a resource among all other resources of that type. Computer systems generate UUIDs locally using very large random numbers
 
+[Tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths): Use this to load modules whose location is specified in the paths section of tsconfig.json or jsconfig.json. Both loading at run-time and via API are supported.
+
 <br />
 
 ### Docker Images

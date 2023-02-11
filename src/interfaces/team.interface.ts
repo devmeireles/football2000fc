@@ -1,7 +1,7 @@
-import { IContinent } from './continent.interface';
-import { ICountry } from './country.interface';
-import { IDefault } from './default.interface';
-import { IPlayer } from './player.interface';
+import { IContinent } from "./continent.interface";
+import { ICountry } from "./country.interface";
+import { IDefault } from "./default.interface";
+import { IPlayer } from "./player.interface";
 
 export interface ITeam extends IDefault {
   name: string;

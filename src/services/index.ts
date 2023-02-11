@@ -1,1 +1,1 @@
-export * as leagueService from './leagues.service';
+export * as leagueService from "./leagues.service";

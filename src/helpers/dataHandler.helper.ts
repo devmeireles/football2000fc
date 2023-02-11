@@ -1,4 +1,4 @@
-import { slugfy } from './slugfy.helper';
+import { slugfy } from "./slugfy.helper";
 
 /**
  * Gets a value to score and transforms in a number
@@ -7,7 +7,7 @@ import { slugfy } from './slugfy.helper';
  * @returns the score value as number
  */
 export const formatScores = (value: string | number): number => {
-    if (value === '-') {
+    if (value === "-") {
         return 0;
     }
 
@@ -20,11 +20,11 @@ export const formatScores = (value: string | number): number => {
  * @returns the ppg as number like 1.5
  */
 export const formatPPG = (value: string): number => {
-    if (value === '-') {
+    if (value === "-") {
         return 0;
     }
 
-    return Number(value.replace(',', '.'));
+    return Number(value.replace(",", "."));
 };
 
 /**
@@ -33,7 +33,7 @@ export const formatPPG = (value: string): number => {
  * @returns the minutes as number
  */
 export const formatMinutes = (value: string): number =>
-    Number(value.replace(/\D+/g, ''));
+    Number(value.replace(/\D+/g, ""));
 
 /**
  * Transforms a data string in a timestamp number
@@ -42,24 +42,24 @@ export const formatMinutes = (value: string): number =>
  */
 export const formatBirth = (birth: string): number => {
     const monthArr = [
-        'Jan',
-        'Fev',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
+        "Jan",
+        "Fev",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
     ];
 
-    let formatedBirth = birth.replace(/\s/g, '');
+    let formatedBirth = birth.replace(/\s/g, "");
     let month: string, day: number, year: number;
 
-    if (formatedBirth.includes('(') && formatedBirth.includes(')')) {
+    if (formatedBirth.includes("(") && formatedBirth.includes(")")) {
         formatedBirth = formatedBirth.substring(0, formatedBirth.length - 4);
 
         month = formatedBirth.substring(0, 3);
@@ -67,7 +67,7 @@ export const formatBirth = (birth: string): number => {
         year = Number(formatedBirth.substring(6, 10));
     }
 
-    const finalDate = new Date(year!, monthArr.indexOf(month!), day!).getTime();
+    const finalDate = new Date(year, monthArr.indexOf(month), day).getTime();
 
     return finalDate;
 };
@@ -80,8 +80,8 @@ export const formatBirth = (birth: string): number => {
 export const formatSeasonYear = (value: string): number => {
     let formatedValue: number;
 
-    if (value.indexOf('/') > -1) {
-        const season = value.split('/')[0];
+    if (value.indexOf("/") > -1) {
+        const season = value.split("/")[0];
 
         // to deal with seasons like 20/21
         if (season.length === 2) {
@@ -94,7 +94,7 @@ export const formatSeasonYear = (value: string): number => {
             }
         }
 
-        return formatedValue!;
+        return formatedValue;
     }
 
     return Number(value);
@@ -107,24 +107,24 @@ export const formatSeasonYear = (value: string): number => {
  */
 export const formatDataHeaderKey = (value: string): string => {
     let formatedValue = value.trim();
-    formatedValue = formatedValue.replace(':', '');
+    formatedValue = formatedValue.replace(":", "");
     formatedValue = slugfy(formatedValue);
 
     switch (formatedValue) {
-        case 'date-of-birth-age':
-            return 'birth';
-        case 'place-of-birth':
-            return 'cityBirth';
-        case 'citizenship':
-            return 'countryBirth';
-        case 'former-international':
-            return 'formerInternational';
-        case 'contract-expires':
-            return 'contractExpires';
-        case 'date-of-death':
-            return 'dateDeath';
-        default:
-            return formatedValue;
+    case "date-of-birth-age":
+        return "birth";
+    case "place-of-birth":
+        return "cityBirth";
+    case "citizenship":
+        return "countryBirth";
+    case "former-international":
+        return "formerInternational";
+    case "contract-expires":
+        return "contractExpires";
+    case "date-of-death":
+        return "dateDeath";
+    default:
+        return formatedValue;
     }
 };
 
@@ -137,7 +137,7 @@ export const formatDataHeaderValue = (
     value: string,
     tip?: string,
 ): string | number => {
-    if (tip === 'birth') return formatBirth(value.trim());
+    if (tip === "birth") return formatBirth(value.trim());
 
     return value.trim();
 };
@@ -156,8 +156,8 @@ export const imageResize = (
     newSize: string,
     removeTimestamp?: boolean,
 ): string => {
-    if (removeTimestamp && imageURL.includes('?') && imageURL.includes('=')) {
-        imageURL = imageURL.split('?')[0];
+    if (removeTimestamp && imageURL.includes("?") && imageURL.includes("=")) {
+        imageURL = imageURL.split("?")[0];
     }
 
     return imageURL.replace(oldSize, newSize);
@@ -169,4 +169,4 @@ export const imageResize = (
  * @returns the League id as string
  */
 export const getLeagueExternalIdFromImg = (url: string): string =>
-    url.split('/').splice(-1)[0].split('.')[0];
+    url.split("/").splice(-1)[0].split(".")[0];

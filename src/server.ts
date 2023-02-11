@@ -1,5 +1,5 @@
 import "module-alias/register";
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
 import app from "./app";
 
 dotenv.config();

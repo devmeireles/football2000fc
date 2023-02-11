@@ -1,61 +1,61 @@
 import { Entity, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
 import { v4 } from "uuid";
-import { ICountry, ILeague, IMedia, ISeason, TLeagueType } from "@/interfaces";
+import { ICountry, ILeague, IMedia, TLeagueType } from "@/interfaces";
 import { RegionEntity } from "./region.entity";
 
 @Entity({
-    tableName: 'leagues'
+    tableName: "leagues"
 })
 export class LeagueEntity implements ILeague {
     @PrimaryKey()
-    id: string = v4();
+        id: string = v4();
 
     @Property({
         default: true
     })
-    active: boolean;
+        active: boolean;
 
     @Property()
-    type: TLeagueType;
+        type: TLeagueType;
 
     @Property()
-    slug: string;
+        slug: string;
 
     @Property()
-    country: string | ICountry;
+        country: string | ICountry;
 
     @Property({
         nullable: true
     })
-    media?: string | IMedia;
+        media?: string | IMedia;
 
     @Property()
-    name: string;
+        name: string;
 
     @Property()
-    tier?: string;
+        tier?: string;
 
     @Property()
-    external_id: string;
+        external_id: string;
 
     @ManyToOne({
         entity: () => RegionEntity,
         nullable: false,
-        referenceColumnName: 'id'
+        referenceColumnName: "id"
     })
-    region?: string;
+        region?: string;
 
     @Property({
         default: new Date().getTime(),
         type: "bigint",
     })
-    created_at: number;
+        created_at: number;
 
     @Property({
         nullable: true,
         type: "bigint"
     })
-    updated_at: number;
+        updated_at: number;
 
     constructor(data: Record<string, any>) {
         Object.assign(this, data);
