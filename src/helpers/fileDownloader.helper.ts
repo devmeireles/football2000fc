@@ -1,39 +1,39 @@
-import { S3 } from 'aws-sdk';
-import axios from 'axios';
-import { v4 } from 'uuid';
-import path from 'path';
-import fs from 'fs';
+import { S3 } from "aws-sdk";
+import axios from "axios";
+import { v4 } from "uuid";
+import path from "path";
+import fs from "fs";
 
 export const imageToS3 = async (pathToSave:string, url: string): Promise<string> => {
-    const tmpFolder = path.resolve(`./tmp/uploads`);
+    const tmpFolder = path.resolve("./tmp/uploads");
     const fileName = `${v4()}.png`;
     const fileDir = `${tmpFolder}/${fileName}`;
     const s3FileName = `${pathToSave}/${fileName}`;
 
     const response = await axios({
         url,
-        method: 'GET',
-        responseType: 'stream',
+        method: "GET",
+        responseType: "stream",
     });
 
     if (!fs.existsSync(tmpFolder)) fs.mkdirSync(tmpFolder, { recursive: true });
 
     const item = path.resolve(__dirname, tmpFolder, fileName);
-    const writer = fs.createWriteStream(item)
+    const writer = fs.createWriteStream(item);
 
-    response.data.pipe(writer)
+    response.data.pipe(writer);
 
     new Promise((resolve, reject) => {
-        writer.on('finish', resolve)
-        writer.on('error', reject)
+        writer.on("finish", resolve);
+        writer.on("error", reject);
     }).then(async () => {
         const s3Client = new S3({
-            endpoint: 'http://localhost:9090',
+            endpoint: "http://localhost:9090",
             s3ForcePathStyle: true,
-            signatureVersion: 'v3',
+            signatureVersion: "v3",
             credentials: {
-                accessKeyId: 'cooool',
-                secretAccessKey: 'niceone',
+                accessKeyId: "cooool",
+                secretAccessKey: "niceone",
             }
         });
 
@@ -42,9 +42,9 @@ export const imageToS3 = async (pathToSave:string, url: string): Promise<string>
         try {
             await s3Client
                 .upload({
-                    Bucket: 'bucket',
+                    Bucket: "bucket",
                     Key: s3FileName,
-                    ContentType: 'png',
+                    ContentType: "png",
                     Body: blob,
                 })
                 .promise();
@@ -56,10 +56,12 @@ export const imageToS3 = async (pathToSave:string, url: string): Promise<string>
 
     removeTmpFolder();
     return s3FileName;
-}
+};
 
 export const removeTmpFolder = async () => {
-    const tmpFolder = path.resolve(`./tmp`);
+    const tmpFolder = path.resolve("./tmp");
 
-    fs.rm(tmpFolder, { recursive: true }, () => { })
-}
+    fs.rm(tmpFolder, { recursive: true }, (err) => {
+        console.log(err);
+    });
+};

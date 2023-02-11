@@ -1,1 +1,1 @@
-export * as leagueController from './league.controller';
+export * as leagueController from "./league.controller";

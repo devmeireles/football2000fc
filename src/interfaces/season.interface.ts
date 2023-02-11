@@ -1,5 +1,5 @@
-import { IDefault } from './default.interface';
-import { ITeam } from './team.interface';
+import { IDefault } from "./default.interface";
+import { ITeam } from "./team.interface";
 
 export interface ISeason extends IDefault {
   year?: number;

@@ -1,9 +1,9 @@
-import { ICountry } from './country.interface';
-import { IDefault } from './default.interface';
-import { IMedia } from './media.interface';
-import { ISeason } from './season.interface';
+import { ICountry } from "./country.interface";
+import { IDefault } from "./default.interface";
+import { IMedia } from "./media.interface";
+import { ISeason } from "./season.interface";
 
-export type TLeagueType = 'CHAMPIONSHIP' | 'LEAGUE' | 'UNSET' | 'FRIENDLY';
+export type TLeagueType = "CHAMPIONSHIP" | "LEAGUE" | "UNSET" | "FRIENDLY";
 
 export interface ILeague extends IDefault {
   active: boolean;

@@ -1,7 +1,7 @@
 import cors from "cors";
-import express, { NextFunction, Request } from "express";
-import dotenv from 'dotenv';
-import { MikroORM, RequestContext } from '@mikro-orm/core';
+import express, { NextFunction } from "express";
+import dotenv from "dotenv";
+import { MikroORM, RequestContext } from "@mikro-orm/core";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { routes } from "@/routes";
 import options from "@/config/mikro-orm.config";
@@ -28,7 +28,7 @@ export class App {
     }
 
     private async setupDatabase(): Promise<void> {
-        this.orm = await MikroORM.init<PostgreSqlDriver>(options)
+        this.orm = await MikroORM.init<PostgreSqlDriver>(options);
     }
 
     private setupRoutes(): void {

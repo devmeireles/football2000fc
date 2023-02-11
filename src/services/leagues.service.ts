@@ -1,5 +1,5 @@
-import { EntityManager, QueryOrder, RequestContext } from '@mikro-orm/core';
-import { LeagueEntity } from '@/entities';
+import { QueryOrder, RequestContext } from "@mikro-orm/core";
+import { LeagueEntity } from "@/entities";
 
 
 export const getLeagues = async () => {
@@ -14,5 +14,5 @@ export const getLeagues = async () => {
                 name: QueryOrder.ASC
             }
         }
-    )
-}
+    );
+};

@@ -1,6 +1,6 @@
-import { IDefault } from './default.interface';
-import { ILeague } from './league.interface';
-import { IMedia } from './media.interface';
+import { IDefault } from "./default.interface";
+import { ILeague } from "./league.interface";
+import { IMedia } from "./media.interface";
 
 export interface ICountry extends IDefault {
   name: string;

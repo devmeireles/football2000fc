@@ -5,22 +5,22 @@ export type GoalkeeperStats = {
     cleanSheets: number;
   };
   
-  export type ICompetition = {
+export type ICompetition = {
     id: string;
     name: string;
   };
   
-  export type IClub = {
+export type IClub = {
     id: number;
     name: string;
   };
   
-  export type IPlayerSeason = {
+export type IPlayerSeason = {
     year: number;
     name: string;
   };
   
-  export type PlayerStats = {
+export type PlayerStats = {
     season: IPlayerSeason;
     competition: ICompetition;
     club: IClub;
