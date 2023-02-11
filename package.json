@@ -7,7 +7,7 @@
     "start:dev": "npx ts-node-dev --respawn --pretty --transpile-only src/server.ts",
     "producer:getleagues": "npx ts-node-dev src/crawler/batches/getLeagues.batch.ts",
     "consumer:getleagues": "npx ts-node-dev src/consumers/getLeagues.consumer.ts",
-    "consumer:getleagueswithClub": "npx ts-node-dev src/consumers/getLeagues.consumer.ts --fetch-club --fetch-player"
+    "consumer:getleagueswithClub": "npx ts-node-dev src/consumers/getLeagues.consumer.ts --fetch-club"
   },
   "keywords": [],
   "author": "",
