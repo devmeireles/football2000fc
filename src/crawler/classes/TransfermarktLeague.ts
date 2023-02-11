@@ -66,6 +66,7 @@ export class TransfermarktLeague extends Transfermarkt {
             active: false,
             type: 'UNSET',
             external_id,
+            region: ELeagueRegion[region],
           });
         });
       }

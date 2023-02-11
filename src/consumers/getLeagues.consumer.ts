@@ -8,6 +8,9 @@ import { queueDataHandler } from '../helpers/queueDataHandler.helper';
 dotenv.config();
 
 (async () => {
+    const { argv } = process;
+    argv.splice(0, 2);
+
     const orm = await MikroORM.init<PostgreSqlDriver>(options);
     const KAFKA_BROKER_ADDRESS = process.env.KAFKA_BROKER
     const EXAMPLE_TOPIC = 'get-leagues-topic'
@@ -20,7 +23,7 @@ dotenv.config();
     await consumer.subscribe({ topic: EXAMPLE_TOPIC })
     await consumer.run({
         eachMessage: async ({ message }) => {
-            await queueDataHandler(message, orm);
+            await queueDataHandler({ message, orm, argv });
         },
     })
 })();

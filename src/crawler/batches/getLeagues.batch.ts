@@ -1,6 +1,8 @@
 import { getLeaguesFromContinent } from "../functions/getLeaguesFromContinent";
+import { ILeague } from '../../interfaces'
 import { Kafka, logLevel } from 'kafkajs'
 import * as dotenv from 'dotenv'
+import { ELeagueRegion } from "../../types";
 
 dotenv.config();
 
@@ -25,21 +27,22 @@ type TLeagueCrawlerEvent = {
         const event: TLeagueCrawlerEvent = {
             region: 3,
             page: 1,
-            breakPoint: 7,
+            breakPoint: 2,
         };
         const leagues = await getLeaguesFromContinent(event);
 
-        // const leagues = [
+        // const leagues: ILeague[] = [
         //     {
-        //         "name": "Premier Liga",
-        //         "slug": "premier-liga",
-        //         "media": "https://tmssl.akamaized.net/images/logo/normal/ukr1.png",
-        //         "country": "Ukraine",
-        //         "created_at": 1675721245613,
-        //         "updated_at": 1675721245613,
-        //         "active": false,
-        //         "type": "UNSET",
-        //         "external_id": "ukr1"
+        //         name: "Premier Liga",
+        //         slug: "premier-liga",
+        //         media: "https://tmssl.akamaized.net/images/logo/normal/ukr1.png",
+        //         country: "Ukraine",
+        //         created_at: 1675721245613,
+        //         updated_at: 1675721245613,
+        //         active: false,
+        //         type: "UNSET",
+        //         external_id: "ukr1",
+        //         region: ELeagueRegion[event.region]
         //     }
         // ]
 
