@@ -2,7 +2,7 @@ import { Options, FlushMode } from '@mikro-orm/core';
 import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import * as dotenv from 'dotenv'
-import { LeagueEntity } from './entities';
+import { LeagueEntity } from '@/entities';
 
 dotenv.config();
 

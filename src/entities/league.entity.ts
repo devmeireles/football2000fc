@@ -1,6 +1,6 @@
 import { Entity, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
 import { v4 } from "uuid";
-import { ICountry, ILeague, IMedia, ISeason, TLeagueType } from "../interfaces";
+import { ICountry, ILeague, IMedia, ISeason, TLeagueType } from "@/interfaces";
 import { RegionEntity } from "./region.entity";
 
 @Entity({

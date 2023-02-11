@@ -1,9 +1,7 @@
-import { END_POINTS } from '../../config/consts.config';
-import { ELeagueRegion } from '../../types/ELeagueRegion';
-import { TCrawlerEventUrl } from '../../types/TCrawlerEventUrl';
-import { TLeagueCrawlerEvent } from '../../types/TLeagueCrawlerEvent';
-import { TransfermarktLeague } from '../classes/TransfermarktLeague';
-import { ILeague } from '../../interfaces/league.interface';
+import { END_POINTS } from '@/config/consts.config';
+import { ELeagueRegion, TCrawlerEventUrl, TLeagueCrawlerEvent } from '@/types';
+import { TransfermarktLeague } from '@/crawler/classes/TransfermarktLeague';
+import { ILeague } from '@/interfaces'
 
 export const getLeaguesFromContinent = async (
     event: TLeagueCrawlerEvent,

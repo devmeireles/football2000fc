@@ -1,8 +1,8 @@
-import { getLeaguesFromContinent } from "../functions/getLeaguesFromContinent";
-import { ILeague } from '../../interfaces'
 import { Kafka, logLevel } from 'kafkajs'
 import * as dotenv from 'dotenv'
-import { ELeagueRegion } from "../../types";
+import { getLeaguesFromContinent } from "@/crawler/functions/getLeaguesFromContinent";
+import { ILeague } from '@/interfaces'
+import { ELeagueRegion } from "@/types";
 
 dotenv.config();
 
