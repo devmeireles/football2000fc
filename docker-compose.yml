@@ -65,7 +65,16 @@ services:
       - "./servers.json:/pgadmin4/servers.json"
     networks:
       - postgres
-
+  s3:
+    container_name: s3
+    image: adobe/s3mock
+    ports:
+      - "9090:9090"
+      - "9191:9191"
+    environment:
+      - initialBuckets=bucket
+      - debug=true
+      - retainFilesOnExit=true
 networks:
   postgres:
     driver: bridge

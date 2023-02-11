@@ -2,6 +2,7 @@ import { getLeagueExternalIdFromImg, imageResize, slugfy } from '../../helpers';
 import { ELeagueRegion, TCrawlerEventUrl } from '../../types';
 import { ILeague } from '../../interfaces';
 import { Transfermarkt } from './Transfermarkt';
+import { imageToS3 } from '../../helpers/fileDownloader.helper';
 
 /**
  * The Transfermarkt class to handle with Leagues
@@ -42,7 +43,7 @@ export class TransfermarktLeague extends Transfermarkt {
       ).filter('.odd, .even');
 
       if (rows.length > 0) {
-        rows.map((i, item) => {
+        rows.map(async (i, item) => {
           const imageEl = $(item)
             .find('td.hauptlink')
             .eq(0)
@@ -56,10 +57,13 @@ export class TransfermarktLeague extends Transfermarkt {
             .attr('title');
           const external_id = getLeagueExternalIdFromImg(imageURL);
 
+          const formatedImg = imageResize(imageURL, 'tiny', 'normal', true);
+          const s3Image = await imageToS3('leagues', formatedImg);
+
           data.push({
             name: league,
             slug: slugfy(league),
-            media: imageResize(imageURL, 'tiny', 'normal', true),
+            media: s3Image,
             country,
             created_at: new Date().getTime(),
             updated_at: new Date().getTime(),
