@@ -14,4 +14,6 @@ export interface ILeague extends IDefault {
   name: string;
   seasons?: ISeason[] | Record<string, any>;
   external_id: string;
+  region?: string;
+  tier?: string;
 }

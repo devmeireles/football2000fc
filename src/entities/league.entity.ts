@@ -1,8 +1,7 @@
-import { Entity, MikroORM, PrimaryKey, Property } from "@mikro-orm/core";
-import { PostgreSqlDriver } from "@mikro-orm/postgresql";
+import { Entity, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
 import { v4 } from "uuid";
 import { ICountry, ILeague, IMedia, ISeason, TLeagueType } from "../interfaces";
-import options from '../mikro-orm.config';
+import { RegionEntity } from "./region.entity";
 
 @Entity({
     tableName: 'leagues'
@@ -34,10 +33,17 @@ export class LeagueEntity implements ILeague {
     name: string;
 
     @Property()
-    seasons?: ISeason[] | Record<string, any>;
+    tier?: string;
 
     @Property()
     external_id: string;
+
+    @ManyToOne({
+        entity: () => RegionEntity,
+        nullable: false,
+        referenceColumnName: 'id'
+    })
+    region?: string;
 
     @Property({
         default: new Date().getTime(),
@@ -54,7 +60,4 @@ export class LeagueEntity implements ILeague {
     constructor(data: Record<string, any>) {
         Object.assign(this, data);
     }
-
-    // public setLeagueTeamsData() {
-    //     console.log('save on db', this.data);
 }
