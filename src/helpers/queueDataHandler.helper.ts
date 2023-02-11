@@ -1,11 +1,20 @@
 import { MikroORM } from "@mikro-orm/core";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { KafkaMessage } from "kafkajs"
-import { LeagueEntity } from "../entities";
+import { ELeagueRegion } from "../types";
+import { RegionEntity, LeagueEntity } from "../entities";
 import { ILeague } from "../interfaces";
 
-export const queueDataHandler = async (message: KafkaMessage, orm: MikroORM<PostgreSqlDriver>) => {
+type TQueueDataHandler = {
+    message: KafkaMessage,
+    orm: MikroORM<PostgreSqlDriver>,
+    argv: string[],
+    region?: any,
+}
+
+export const queueDataHandler = async (params: TQueueDataHandler) => {
     try {
+        const { argv, message, orm, region } = params;
         const { value, key } = message;
         const data = JSON.parse(value.toString());
         const parsedKey = key.toString();
@@ -13,6 +22,25 @@ export const queueDataHandler = async (message: KafkaMessage, orm: MikroORM<Post
         switch (parsedKey as unknown as string) {
             case 'get-league':
                 const league = data as ILeague
+                let regionID: string;
+
+                const regionExists = await orm.em.findOne(RegionEntity, {
+                    external_id: league.region
+                });
+
+                if (!regionExists) {
+                    const newRegionData = {
+                        name: league.region,
+                        external_id: league.region,
+                    }
+
+                    const region = orm.em.create(RegionEntity, newRegionData);
+                    orm.em.flush();
+
+                    regionID = region.id
+                } else {
+                    regionID = regionExists.id
+                }
 
                 const leagueExists = await orm.em.findOne(LeagueEntity, {
                     external_id: league.external_id,
@@ -22,8 +50,13 @@ export const queueDataHandler = async (message: KafkaMessage, orm: MikroORM<Post
 
                 if (!leagueExists) {
                     league.created_at = new Date().getTime();
+                    league.region = regionID;
                     orm.em.create(LeagueEntity, league);
-                    orm.em.flush()
+                    orm.em.flush();
+
+                    if (argv.includes('--fetch-club')) {
+                        // Loads the league table
+                    }
                 }
 
                 break;
