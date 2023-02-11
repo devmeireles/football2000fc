@@ -1,11 +1,10 @@
-import "module-alias/register";
 import cors from "cors";
 import express, { NextFunction, Request } from "express";
 import dotenv from 'dotenv';
 import { MikroORM, RequestContext } from '@mikro-orm/core';
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
-import { routes } from "./routes/index";
-import options from "./mikro-orm.config";
+import { routes } from "@/routes";
+import options from "@/config/mikro-orm.config";
 
 export class App {
     public app: express.Application;

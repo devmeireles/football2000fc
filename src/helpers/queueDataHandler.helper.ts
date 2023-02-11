@@ -1,9 +1,9 @@
 import { MikroORM } from "@mikro-orm/core";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { KafkaMessage } from "kafkajs"
-import { ELeagueRegion } from "../types";
-import { RegionEntity, LeagueEntity } from "../entities";
-import { ILeague } from "../interfaces";
+import { ELeagueRegion } from "@/types";
+import { RegionEntity, LeagueEntity } from "@/entities";
+import { ILeague } from "@/interfaces";
 
 type TQueueDataHandler = {
     message: KafkaMessage,

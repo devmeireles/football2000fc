@@ -2,8 +2,8 @@ import { Kafka, logLevel } from 'kafkajs'
 import * as dotenv from 'dotenv'
 import { MikroORM } from "@mikro-orm/core";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
-import options from "../mikro-orm.config";
-import { queueDataHandler } from '../helpers/queueDataHandler.helper';
+import options from "@/config/mikro-orm.config";
+import { queueDataHandler } from '@/helpers/queueDataHandler.helper';
 
 dotenv.config();
 

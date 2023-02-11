@@ -9,7 +9,6 @@
         "target": "es2017",
         "sourceMap": true,
         "outDir": "./dist",
-        "baseUrl": "./",
         "incremental": true,
         "skipLibCheck": true,
         "strictNullChecks": false,
@@ -18,5 +17,38 @@
         "forceConsistentCasingInFileNames": false,
         "noFallthroughCasesInSwitch": false,
         "esModuleInterop": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@/config/*": [
+                "config/*"
+            ],
+            "@/types": [
+                "types"
+            ],
+            "@/interfaces": [
+                "interfaces"
+            ],
+            "@/entities": [
+                "entities"
+            ],
+            "@/crawler/*": [
+                "crawler/*"
+            ],
+            "@/routes": [
+                "routes"
+            ],
+            "@/helpers/*": [
+                "helpers/*"
+            ],
+            "@/helpers": [
+                "helpers"
+            ],
+            "@/services": [
+                "services"
+            ],
+            "@/controllers": [
+                "controllers"
+            ]
+        }
     }
 }
